@@ -23,54 +23,34 @@ int cgiMain()
 	fclose(fd);
 	fprintf(cgiOut, "Content-type:text/html;charset=utf-8\n\n");
 
-	char name[32] = "\0";
-	char age[16] = "\0";
-	char id[32] = "\0";
-	char subid[16] = "\0";
-	char  sex[16]  ="\0";
-	char sub[64]="\0";
+	char Cid[16] = "\0";
+	char id[20] = "\0";
+	char chengji[20] = "\0";
+
 	int status = 0;
 
-	status = cgiFormString("name",  name, 32);
+	status = cgiFormString("Cid",  Cid, 16);
 	if (status != cgiFormSuccess)
 	{
-		fprintf(cgiOut, "get name error!\n");
+		fprintf(cgiOut, "get Cid error!\n");
 		return 1;
 	}
 
-	status = cgiFormString("sub",  sub, 64);
-	if (status != cgiFormSuccess)
-	{
-		fprintf(cgiOut, "get subject error!\n");
-		return 1;
-	}
-
-	status = cgiFormString("sex",  sex, 16);
-	if (status != cgiFormSuccess)
-	{
-		fprintf(cgiOut, "get sex error!\n");
-		return 1;
-	}
-
-	status = cgiFormString("age",  age, 16);
-	if (status != cgiFormSuccess)
-	{
-		fprintf(cgiOut, "get age error!\n");
-		return 1;
-	}
-	status = cgiFormString("subid",  subid, 16);
-	if (status != cgiFormSuccess)
-	{
-		fprintf(cgiOut, "get subid error!\n");
-		return 1;
-	}
-
-	status = cgiFormString("id",  id, 32);
+	status = cgiFormString("id",  id, 20);
 	if (status != cgiFormSuccess)
 	{
 		fprintf(cgiOut, "get id error!\n");
 		return 1;
 	}
+
+	status = cgiFormString("chengji", chengji, 20);
+	if (status != cgiFormSuccess)
+	{
+		fprintf(cgiOut, "get chengji error!\n");
+		return 1;
+	}
+
+
 
 	//fprintf(cgiOut, "name = %s, age = %s, stuId = %s\n", name, age, stuId);
 
@@ -96,18 +76,31 @@ int cgiMain()
 	}
 
 
-  int sta=1;
-	sprintf(sql, "update stu set name='%s', age= %d ,sex='%s',sub='%s',subid=%d,1,where id = %d ", atoi(id), name, atoi(age), sex, sub,atoi(subid),sta);
-	if ((ret = mysql_real_query(db, sql, strlen(sql) + 1)) != 0)
+
+	 // strcpy(sql, "");
+	// ,create table major(subid int(16) not null primary key,col varchar(40) not null,sub varchar(40) not null)"
+	//create table stu(id int not null primary key, name varchar(20) not null, age int not null,sex varchar(4) not null,sub varchar(40) not null,subid int(16) not null)
+	//if ((ret = mysql_real_query(db, sql, strlen(sql) + 1)) != 0)
+	//{
+		//if (ret != 1)
+	//	{
+	//		fprintf(cgiOut,"mysql_real_query fail:%s\n", mysql_error(db));
+	//		mysql_close(db);
+	//		return -1;
+	//	}
+	//}
+
+
+
+	sprintf(sql, "insert into Score values(%d,  %d ,'%s')",atoi(id),atoi(Cid),chengji);
+	if (mysql_real_query(db, sql, strlen(sql) + 1) != 0)
 	{
-		fprintf(cgiOut,"mysql_real_query fail:%s\n", mysql_error(db));
+		fprintf(cgiOut, "%s\n", mysql_error(db));
 		mysql_close(db);
 		return -1;
 	}
 
-
-
-	fprintf(cgiOut, "update student ok!\n");
+	fprintf(cgiOut, "add student ok!\n");
 	mysql_close(db);
 	return 0;
 }
