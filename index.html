@@ -45,6 +45,9 @@
                 <button>添加学生信息</button>
             </div>
             <div class="text-center col-md-3 col-sm-6">
+                <button>添加专业信息</button>
+            </div>
+            <div class="text-center col-md-3 col-sm-6">
                 <button>查询学生信息</button>
             </div>
             <div class="text-center col-md-3 col-sm-6">
@@ -82,11 +85,44 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="subid" class="col-sm-2 control-label">学生专业号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="subid" class="form-control" id="subid" placeholder="请输入学生专业号">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="sub" class="col-sm-2 control-label">学生专业</label>
                         <div class="col-sm-10">
                             <input type="text" name="sub" class="form-control" id="sub" placeholder="请输入学生专业">
                         </div>
                     </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">提交</button>
+                        <button type="reset" class="btn btn-success">重置</button>
+                    </div>
+                </form>
+            </li>
+            <li class="">
+                <form class="form-horizontal" method="get" action="/cgi-bin/sx/addCourse.cgi">
+                    <div class="form-group">
+                        <label for="Cid" class="col-sm-2 control-label">课程号</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="Cid" class="form-control" id="Cid" placeholder="请输入课程号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Cname" class="col-sm-2 control-label">课程名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="Cname" class="form-control" id="Cname" placeholder="请输入课程名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Cteacher" class="col-sm-2 control-label">任课老师</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="Cteacher" class="form-control" id="Cteacher" placeholder="请输入任课老师">
+                        </div>
+                    </div>
+
                     <div class="text-center">
                         <button type="submit" class="btn btn-success">提交</button>
                         <button type="reset" class="btn btn-success">重置</button>

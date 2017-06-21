@@ -9,54 +9,34 @@ int cgiMain()
 
 	fprintf(cgiOut, "Content-type:text/html;charset=utf-8\n\n");
 
-	char name[32] = "\0";
-	char age[16] = "\0";
-	char stuId[32] = "\0";
-	char subid[16] = "\0";
-	char  sex[16]  ="\0";
-	char sub[64]="\0";
+	char Cid[16] = "\0";
+	char Cname[20] = "\0";
+	char Cteacher[20] = "\0";
+
 	int status = 0;
 
-	status = cgiFormString("name",  name, 32);
+	status = cgiFormString("Cid",  Cid, 16);
 	if (status != cgiFormSuccess)
 	{
-		fprintf(cgiOut, "get name error!\n");
+		fprintf(cgiOut, "get Cid error!\n");
 		return 1;
 	}
 
-	status = cgiFormString("sub",  sub, 64);
+	status = cgiFormString("Cname",  Cname, 20);
 	if (status != cgiFormSuccess)
 	{
-		fprintf(cgiOut, "get subject error!\n");
+		fprintf(cgiOut, "get Cname error!\n");
 		return 1;
 	}
 
-	status = cgiFormString("sex",  sex, 16);
+	status = cgiFormString("Cteacher", Cteacher, 20);
 	if (status != cgiFormSuccess)
 	{
-		fprintf(cgiOut, "get sex error!\n");
+		fprintf(cgiOut, "get Cteacher error!\n");
 		return 1;
 	}
 
-	status = cgiFormString("age",  age, 16);
-	if (status != cgiFormSuccess)
-	{
-		fprintf(cgiOut, "get age error!\n");
-		return 1;
-	}
-	status = cgiFormString("subid",  subid, 16);
-	if (status != cgiFormSuccess)
-	{
-		fprintf(cgiOut, "get subid error!\n");
-		return 1;
-	}
 
-	status = cgiFormString("stuId",  stuId, 32);
-	if (status != cgiFormSuccess)
-	{
-		fprintf(cgiOut, "get stuId error!\n");
-		return 1;
-	}
 
 	//fprintf(cgiOut, "name = %s, age = %s, stuId = %s\n", name, age, stuId);
 
@@ -94,11 +74,11 @@ int cgiMain()
 	//		mysql_close(db);
 	//		return -1;
 	//	}
-	//}   
+	//}
 
 
 
-	sprintf(sql, "insert into stu values(%d, '%s', %d , '%s' , %d,'%s')", atoi(stuId), name, atoi(age), sex,atoi(subid), sub);
+	sprintf(sql, "insert into Course values(%d,  '%s' , '%s')", atoi(Cid),Cname,Cteacher);
 	if (mysql_real_query(db, sql, strlen(sql) + 1) != 0)
 	{
 		fprintf(cgiOut, "%s\n", mysql_error(db));
