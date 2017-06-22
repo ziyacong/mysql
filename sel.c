@@ -24,7 +24,7 @@ int cgiMain()
 		ch = fgetc(fd);
 	}
 fclose(fd);
-	fprintf(cgiOut, "Content-type:text/html;charset=utf-8\n\n");
+
 /*	fprintf(cgiOut, "<head><meta charset=\"utf-8\"/><title>查询结果</title>\
 			<style>table {width:400px; margin: 50px auto; border: 1px solid gray; border-collapse: collapse; border-spacing: none; text-align:center;}\
 			tr,td,th{border: 1px solid gray;}\

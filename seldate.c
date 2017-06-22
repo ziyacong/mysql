@@ -23,7 +23,7 @@ int cgiMain()
 		ch = fgetc(fd);
 	}
 	fclose(fd);
-	fprintf(cgiOut, "Content-type:text/html;charset=utf-8\n\n");
+	
 /*	fprintf(cgiOut, "<head><meta charset=\"utf-8\"/><title>查询结果</title>\
 			<style>table {width:400px; margin: 50px auto; border: 1px solid gray; border-collapse: collapse; border-spacing: none; text-align:center;}\
 			tr,td,th{border: 1px solid gray;}\
@@ -34,37 +34,15 @@ int cgiMain()
 		    <link rel=\"stylesheet\" href=\"/stu/public/css/bootstrap.min.css\">\
 		</head>");
 
-	char name2 = "\0";
-	int status = 0;
-
-	status = cgiFormString("name2",  name2, 32);
-	if (status != cgiFormSuccess)
-	{
-		fprintf(cgiOut, "get name2 error!\n");
-		return 1;
-	}
 
 	int ret;
 	MYSQL *db;
 	char sql[128] = "\0";
 	char stu="stu";
 
-	if (name2 == '*')
-	{
-		sprintf(sql, "select * from stu,Score,Course");
-	}
-	else
-	{
-    if (strcmp(name2,stu)){
-      sprintf(sql, "select * from stu");
-    }else{
-        if (name2=="Course") {
-          sprintf(sql, "select * from Course");
-        }else{
-          sprintf(sql, "select * from Score");
-        }
-      }
-	}
+
+  sprintf(sql, "select * from stu");
+
 
 
 	//初始化

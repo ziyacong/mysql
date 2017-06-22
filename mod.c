@@ -21,7 +21,7 @@ int cgiMain()
 		ch = fgetc(fd);
 	}
 	fclose(fd);
-	fprintf(cgiOut, "Content-type:text/html;charset=utf-8\n\n");
+	
 
 	char name[32] = "\0";
 	char age[16] = "\0";

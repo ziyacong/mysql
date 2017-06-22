@@ -21,7 +21,7 @@ int cgiMain()
 		ch = fgetc(fd);
 	}
 	fclose(fd);
-	fprintf(cgiOut, "Content-type:text/html;charset=utf-8\n\n");
+	
 
 	char Cid[16] = "\0";
 	char id[20] = "\0";
